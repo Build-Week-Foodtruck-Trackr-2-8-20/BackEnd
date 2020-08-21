@@ -20,14 +20,14 @@ test accounts:
 
 ```
 {
-  username: "operator1",
+  "username": "operator1",
   "email": "operator1@gmail.com",
   "password": "pass",
   "role": 1  //Operator role
 }
 
 {
-  "name": "diner1",
+  "username": "diner1",
   "email": "diner1@gmail.com",
   "password": "pass",
   "role": 2  //Diner role
