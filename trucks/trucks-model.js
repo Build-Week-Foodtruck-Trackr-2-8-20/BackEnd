@@ -17,7 +17,6 @@ function findById(id) {
 
 function findTruckRatings(id) {
     return db('truckratings')
-        .select(db.raw('group_concat(rating) as ratings'))
         .where({ truckid: id });
 }
 
