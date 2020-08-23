@@ -48,14 +48,14 @@ BASE URL: https://food-truck-lambda.herokuapp.com/
 | -------------------------------------- | ----------------------------- | --------------------------------------------------------------- |
 | [POST](#post-apiauthregister)          | /api/auth/register            | registers a new user                                            |
 | [POST](#post-apiauthlogin)             | /api/auth/login               | lets user log in                                                |
-| [GET]                                  | /api/trucks/                  | get the list of all the trucks with ratings                     |
-| [GET]                                  | /api/trucks/:id               | get the details of a specific truck with ratings                |
-| [GET]                                  | /api/trucks/:id/ratings       | get the array of ratings for a truck                            |
+| [GET]                                  | /api/trucks/                  | get the list of all the trucks with ratings (in an array)       |
+| [GET]                                  | /api/trucks/:id               | get the details of a specific truck with ratings (in an array)  |
+| [GET]                                  | /api/trucks/:id/ratings       | get the ratings for a truck                                     |
 | [POST](#post-apitrucks)                | /api/trucks                   | create a new truck                                              |
-| [POST](#post-apitruckratig)            | /api/trucks/:id/ratings       | adds a new rating for the truck and updates the average rating  |
+| [POST](#post-apitruckratig)            | /api/trucks/:id/ratings       | adds a new rating for truck (also updates the average rating).  |
 | [PUT](#put-apitrucks)                  | /api/trucks/:id               | update a truck                                                  |
 | [DELETE](#delete-apitrucks)            | /api/trucks/:id               | delete a truck                                                  |
-| [DELETE](#delete-apitruckrating)       | /api/trucks/:id               | delete a truck                                                  |
+| [DELETE](#delete-apitruckrating)       | /api/trucks/:id               | delete a truck rating                                           |
 
 ## Examples
 
