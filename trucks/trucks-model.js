@@ -20,6 +20,12 @@ function findTruckRatings(id) {
         .where({ truckid: id });
 }
 
+function findTruckRatingsArray(id) {
+    return db('truckratings')
+        .select([db.raw('group_concat(rating) as ratings')])
+        .where({ truckid: id });
+}
+
 function add(truckData) {
     return db('trucks').insert(truckData);
 }
@@ -43,6 +49,7 @@ module.exports = {
     find,
     findById,
     findTruckRatings,
+    findTruckRatingsArray,
     add,
     addTruckRating,
     update,
