@@ -1,32 +1,23 @@
 const db = require("../database/dbConfig.js");
 
 function find() {
-    return db('trucks');
+    // return db('trucks');
+    return db('trucks as t')
+    .leftJoin('truckratings as r', 't.id', 'r.truckid')
+    .select(['t.*', db.raw('group_concat(r.rating) as ratings')])
+    .groupBy('t.id')
 }
 
 function findById(id) {
-    return db('trucks as t').where({ id });
-    // return db('trucks as t')
-    // .leftJoin('truckratings as r', 't.id', 'r.truckid')
-    // .select('t.*', 'r.rating');
-    // .where({ 't.id': id });
+    return db('trucks as t')
+    .leftJoin('truckratings as r', 't.id', 'r.truckid')
+    .select(['t.*', db.raw('group_concat(r.rating) as ratings')])
+    .where({ 't.id': id });
 }
-
-
-// SELECT t.*, r.rating
-//   FROM trucks AS t
-//   left join truckratings as r
-//   on t.id = r.truckid;
-
-// function findPosts(id) {
-//     return db('posts as p')
-//         .join('users as u', 'u.id', 'p.user_id')
-//         .select('p.id', 'u.username', 'p.contents')
-//         .where({ user_id: id });
-// }
 
 function findTruckRatings(id) {
     return db('truckratings')
+        .select(db.raw('group_concat(rating) as ratings'))
         .where({ truckid: id });
 }
 
