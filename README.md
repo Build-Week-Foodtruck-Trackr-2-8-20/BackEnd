@@ -137,4 +137,70 @@ response data:
     }
 ]
 ```
+#### GET /api/trucks/1/ratings
+response data:
 
+```
+[
+{
+"id": 1,
+"rating": 5,
+"truckid": 1,
+"username": "mj"
+},
+{
+"id": 2,
+"rating": 2,
+"truckid": 1,
+"username": "mj"
+}
+]
+```
+
+#### POST /api/trucks
+
+request data:
+
+```
+{
+"imageURL": "www.apple.com",
+"cuisineType": "Mexican",
+"location": "San Francisco",
+"locationGPS": "San Francisco",
+"departureTime": "2017-01-30 16:49:19",
+"customerRatingAvg": 5,
+"username": "mj"
+}
+```
+
+response data:
+
+```
+{
+    "created": 3
+}
+```
+
+#### POST /api/trucks/1/ratings
+
+request data:
+
+```
+{
+"imageURL": "www.apple.com",
+"cuisineType": "Mexican",
+"location": "San Francisco",
+"locationGPS": "San Francisco",
+"departureTime": "2017-01-30 16:49:19",
+"customerRatingAvg": 5,
+"username": "mj"
+}
+```
+
+response data:
+
+```
+{
+    "created": 3
+}
+```
