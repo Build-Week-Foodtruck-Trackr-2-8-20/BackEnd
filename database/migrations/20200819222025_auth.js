@@ -28,7 +28,7 @@ exports.up = function (knex) {
         tbl.datetime("departureTime");
         tbl.integer("customerRatingAvg").unsigned();
         tbl
-          .integer("username")
+          .string("username")
           .notNullable()
           .unsigned()
           .references("users.username")
@@ -43,6 +43,13 @@ exports.up = function (knex) {
           .notNullable()
           .unsigned()
           .references("trucks.id")
+          .onDelete("RESTRICT")
+          .onUpdate("CASCADE");
+        tbl
+          .string("username")
+          .notNullable()
+          .unsigned()
+          .references("users.username")
           .onDelete("RESTRICT")
           .onUpdate("CASCADE");
       })
@@ -60,7 +67,7 @@ exports.up = function (knex) {
           .onDelete("RESTRICT")
           .onUpdate("CASCADE");
       })
-      .createTable("menuratings", tbl => {
+      .createTable("menuitemratings", tbl => {
         tbl.increments();
         tbl.integer("rating").unsigned();
         tbl
@@ -68,6 +75,13 @@ exports.up = function (knex) {
           .notNullable()
           .unsigned()
           .references("menuitems.id")
+          .onDelete("RESTRICT")
+          .onUpdate("CASCADE");
+        tbl
+          .string("username")
+          .notNullable()
+          .unsigned()
+          .references("users.username")
           .onDelete("RESTRICT")
           .onUpdate("CASCADE");
       })

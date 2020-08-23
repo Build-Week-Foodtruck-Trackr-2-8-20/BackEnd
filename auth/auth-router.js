@@ -61,6 +61,7 @@ function genToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
+    role: user.role
   };
   const options = {
     expiresIn: "2h"

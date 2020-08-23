@@ -1,6 +1,10 @@
 const express = require('express');
 const trucks = require('./trucks-model.js');
+const restricted = require("../auth/authenticate-middleware.js");
+const checkRole = require('../auth/check-role-middleware.js');
 const router = express.Router();
+const OPERATOR = 1;
+const DINER = 2;
 
 router.get('/', (req, res) => {
   trucks.find()
@@ -18,7 +22,6 @@ router.get('/:id', (req, res) => {
   trucks.findById(id)
     .then(trucks => {
       const truck = trucks[0];
-
       if (truck) {
         res.json(truck);
       } else {
@@ -33,7 +36,6 @@ router.get('/:id', (req, res) => {
 router.get('/:id/ratings', (req, res) => {
     const { id } = req.params;
     
-    console.log("id from the url: ", id);
     trucks.findTruckRatings(id)
       .then(ratings => {
         res.json(ratings);
@@ -56,14 +58,30 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:id/ratings', (req, res) => {
+    const { id } = req.params;
     const ratingsData = req.body;
-  
+   
     trucks.addTruckRating(ratingsData)
       .then(ids => {
-        res.status(201).json({ created: ids[0] });
+        trucks.findTruckRatings(id)
+        .then(ratings => {
+            let ratingsArray = ratings[0].ratings.split(",");
+            let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
+            let ratingAvg = Math.round(ratingSum/ratingsArray.length);
+            const changes = {"customerRatingAvg": ratingAvg};
+            console.log("update obj: ", changes);
+            trucks.update(changes, id)
+            .then(count => {
+                if (count) {
+                    res.status(201).json({ created: ids[0] });
+                } else {
+                  res.status(404).json({ message: 'problem with the db', error: err });
+                }
+              })
+          })
       })
       .catch(err => {
-        res.status(500).json({ message: 'Failed to create new rating' });
+        res.status(500).json({ message: 'problem with the db', error: err });
       });
 });
 
