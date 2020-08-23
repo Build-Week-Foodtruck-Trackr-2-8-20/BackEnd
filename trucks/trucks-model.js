@@ -4,14 +4,14 @@ function find() {
     // return db('trucks');
     return db('trucks as t')
     .leftJoin('truckratings as r', 't.id', 'r.truckid')
-    .select(['t.*', db.raw('group_concat(r.rating) as ratings')])
+    .select(['t.*', db.raw('group_concat(r.rating) as dinerRatingsArray')])
     .groupBy('t.id')
 }
 
 function findById(id) {
     return db('trucks as t')
     .leftJoin('truckratings as r', 't.id', 'r.truckid')
-    .select(['t.*', db.raw('group_concat(r.rating) as ratings')])
+    .select(['t.*', db.raw('group_concat(r.rating) as dinerRatingsArray')])
     .where({ 't.id': id });
 }
 
