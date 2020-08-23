@@ -2,18 +2,40 @@
 
 ## Schema
 
-#### Users
+#### users
 
 | Field       | Type    | Notes                               |
 | --------    | ------- | ----------------------------------- |
 | id          | integer | _primary key_ and _auto increments_ |
-| username    | string  | _required_                          |
+| username    | string  | _required_ and _unique_             |
 | email       | string  | _required_ and _unique_             |
-| password    | string  | _required_         
-| role        | integer | _required_
-| location    | string  | _not required_
-| locationGPS | string  | _not required_
+| password    | string  | _required_                          |
+| role        | integer | _required_ (1-Operator & 2-Diner)   |
+| location    | string  | _not required_                      |
+| locationGPS | string  | _not required_                      |
 
+
+#### trucks
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| id                  | integer | _primary key_ and _auto increments_ |
+| imageURL            | string  | _required_ and _unique_             |
+| cuisineType         | string  | _required_                          |
+| location            | string  | _required_                          |
+| locationGPS         | integer | _required_                          |
+| departureTime       | datetime| _not required_                      |
+| customerRatingAvg   | integer | _not required_                      |
+| username            | string  | _required_ and _foreign-key_        |
+
+#### truckratings
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| id                  | integer | _primary key_ and _auto increments_ |
+| rating              | integer | _not required_                      |
+| username            | string  | _required_ and _foreign-key_        |
+| truckid             | integer | _required_ and _foreign-key_        |
 
 ## API
 
@@ -26,6 +48,14 @@ BASE URL: https://food-truck-lambda.herokuapp.com/
 | -------------------------------------- | ----------------------------- | --------------------------------------------------------------- |
 | [POST](#post-apiauthregister)          | /api/auth/register            | registers a new user                                            |
 | [POST](#post-apiauthlogin)             | /api/auth/login               | lets user log in                                                |
+| [GET]                                  | /api/trucks/                  | get the list of all the trucks with ratings                     |
+| [GET]                                  | /api/trucks/:id               | get the details of a specific truck with ratings                |
+| [GET]                                  | /api/trucks/:id/ratings       | get the array of ratings for a truck                            |
+| [POST](#post-apitrucks)                | /api/trucks                   | create a new truck                                              |
+| [POST](#post-apitruckratig)            | /api/trucks/:id/ratings       | adds a new rating for the truck and updates the average rating  |
+| [PUT](#put-apitrucks)                  | /api/trucks/:id               | update a truck                                                  |
+| [DELETE](#delete-apitrucks)            | /api/trucks/:id               | delete a truck                                                  |
+| [DELETE](#delete-apitruckrating)       | /api/trucks/:id               | delete a truck                                                  |
 
 ## Examples
 
