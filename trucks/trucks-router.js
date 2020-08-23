@@ -118,7 +118,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id/ratings', (req, res) => {
+router.delete('/ratings/:id', (req, res) => {
     const { id } = req.params;
   
     trucks.removeTruckRating(id)
