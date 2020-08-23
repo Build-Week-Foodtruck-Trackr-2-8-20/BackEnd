@@ -63,7 +63,7 @@ router.post('/:id/ratings', (req, res) => {
    
     trucks.addTruckRating(ratingsData)
       .then(ids => {
-        trucks.findTruckRatings(id)
+        trucks.findTruckRatingsArray(id)
         .then(ratings => {
             let ratingsArray = ratings[0].ratings.split(",");
             let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
