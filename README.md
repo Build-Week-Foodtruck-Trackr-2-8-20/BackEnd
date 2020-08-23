@@ -4,36 +4,21 @@
 
 #### Users
 
-| Field    | Type    | Notes                               |
-| -------- | ------- | ----------------------------------- |
-| id       | integer | _primary key_ and _auto increments_ |
-| username | string  | _required_                          |
-| email    | string  | _required_ and _unique_             |
-| password | string  | _required_         
-| role     | integer | _required_
+| Field       | Type    | Notes                               |
+| --------    | ------- | ----------------------------------- |
+| id          | integer | _primary key_ and _auto increments_ |
+| username    | string  | _required_                          |
+| email       | string  | _required_ and _unique_             |
+| password    | string  | _required_         
+| role        | integer | _required_
+| location    | string  | _not required_
+| locationGPS | string  | _not required_
+
 
 ## API
 
 BASE URL: https://food-truck-lambda.herokuapp.com/
 
-test accounts:
-
-```
-{
-  "username": "operator1",
-  "email": "operator1@gmail.com",
-  "password": "pass",
-  "role": 1  //Operator role
-}
-
-{
-  "username": "diner1",
-  "email": "diner1@gmail.com",
-  "password": "pass",
-  "role": 2  //Diner role
-}
-
-```
 
 ### Table of Contents
 
@@ -50,8 +35,8 @@ request data:
 
 ```
 {
-  username: "operator2"
-  "email": "operator2@gmail.com",
+  username: "operator1"
+  "email": "operator1@gmail.com",
   "password": "pass",
   "role": 1
 }
@@ -62,9 +47,9 @@ response data:
 ```
 {
     "data": {
-        "id": 4,
-        "username": "operator2",
-        "email": "operator2@gmail.com",
+        "id": 1,
+        "username": "operator1",
+        "email": "operator1@gmail.com",
         "password": "$2a$08$9q0yGueSIFBaBerc8cZdpueLlnn2TVYXAcm/JJn/A.RoCpSi8RGVa",
         "role": 1
     },
