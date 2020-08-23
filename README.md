@@ -108,3 +108,33 @@ response data:
 }
 ```
 
+#### GET /api/trucks
+response data:
+
+```
+[
+    {
+        "id": 1,
+        "imageURL": "www.amazon.com",
+        "cuisineType": "Indian",
+        "location": "San Francisco",
+        "locationGPS": "San Francisco",
+        "departureTime": "2017-01-30 16:49:19",
+        "customerRatingAvg": 4,
+        "username": "mj",
+        "dinerRatingsArray": "2,5"
+    },
+    {
+        "id": 2,
+        "imageURL": "www.gogole.com",
+        "cuisineType": "Italian",
+        "location": "San Francisco",
+        "locationGPS": "San Francisco",
+        "departureTime": "2017-01-30 16:49:19",
+        "customerRatingAvg": 5,
+        "username": "mj",
+        "dinerRatingsArray": null
+    }
+]
+```
+
