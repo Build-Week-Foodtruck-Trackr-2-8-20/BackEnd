@@ -187,12 +187,8 @@ request data:
 
 ```
 {
-"imageURL": "www.apple.com",
-"cuisineType": "Mexican",
-"location": "San Francisco",
-"locationGPS": "San Francisco",
-"departureTime": "2017-01-30 16:49:19",
-"customerRatingAvg": 5,
+"rating": 5,
+"truckid": 1,
 "username": "mj"
 }
 ```
@@ -201,6 +197,6 @@ response data:
 
 ```
 {
-    "created": 3
+    "created": 7
 }
 ```
