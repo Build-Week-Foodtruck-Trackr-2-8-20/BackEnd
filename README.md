@@ -22,8 +22,8 @@
 | id                  | integer | _primary key_ and _auto increments_ |
 | imageURL            | string  | _required_ and _unique_             |
 | cuisineType         | string  | _required_                          |
-| location            | string  | _required_                          |
-| locationGPS         | integer | _required_                          |
+| location            | string  | _not required_                          |
+| locationGPS         | integer | _not required_                          |
 | departureTime       | datetime| _not required_                      |
 | customerRatingAvg   | integer | _not required_                      |
 | username            | string  | _required_ and _foreign-key_        |
