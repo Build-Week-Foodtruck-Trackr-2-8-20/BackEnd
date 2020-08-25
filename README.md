@@ -118,7 +118,7 @@ request data:
 
 ```
 {
-  "username": "operator1"
+  "username": "operator1",
   "email": "operator1@gmail.com",
   "password": "pass",
   "role": 1,
