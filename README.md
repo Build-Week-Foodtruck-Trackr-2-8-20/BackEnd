@@ -98,8 +98,8 @@ BASE URL: https://food-truck-lambda.herokuapp.com/
 | [GET]                                  | /api/menuitmes/:id/ratings    | get the ratings for a truck                                     |
 | [GET]                                  | /api/menuitmes/:id/photos     | get the photos for a truck                                     |
 | [POST](#post-apimenuitems)             | /api/menuitems                | create a new menu item                                              |
-| [POST](#post-apimenurating)            | /api/menuitems/:id/ratings    | adds a new rating for a menuitem (also updates the average rating).  |
-| [POST](#put-apimenuphotos)             | /api/menuitems/:id/photos     | adds a new photo for a menuitem                                                   |
+| [POST](#post-apimenurating)            | /api/menuitems/:id/ratings    | adds a new rating for a menu item (also updates the average rating).  |
+| [POST](#put-apimenuphotos)             | /api/menuitems/:id/photos     | adds a new photo for a menu item                                                   |
 | [PUT](#put-apimenuitmes)               | /api/menuitems/:id            | update a menu item                                                  |
 | [DELETE](#delete-apimenuitems)         | /api/menuitems/:id            | delete a menu item                                                  |
 | [DELETE](#delete-apimenurating)        | /api/menuitems/ratings/:id    | delete a menu item rating                                           |
