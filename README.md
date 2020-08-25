@@ -118,10 +118,12 @@ request data:
 
 ```
 {
-  username: "operator1"
+  "username": "operator1"
   "email": "operator1@gmail.com",
   "password": "pass",
-  "role": 1
+  "role": 1,
+  "location": "location",
+  "locationGPS": "location GPS"
 }
 ```
 
