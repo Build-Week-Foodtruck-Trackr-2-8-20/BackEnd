@@ -6,9 +6,7 @@ const authenticate = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
 const userRouter = require('../users/users-router.js');
 const truckRouter = require('../trucks/trucks-router.js');
-const menuItemRouter = require('../menuitems/menuItems-router.js');
-
-
+const menuItemRouter = require('../menuitems/menuitems-router.js');
 const server = express();
 
 server.use(helmet());
