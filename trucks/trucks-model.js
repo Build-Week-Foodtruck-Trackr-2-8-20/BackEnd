@@ -12,18 +12,28 @@ function findById(id) {
     return db('trucks as t')
     .leftJoin('truckratings as r', 't.id', 'r.truckid')
     .select(['t.*', db.raw('group_concat(r.rating) as dinerRatingsArray')])
-    .where({ 't.id': id });
+    .where({ 't.id': id })
+    .groupBy('t.id');
+}
+
+function findTruckMenuItems(id) {
+    return db('menuitems as m')
+    .leftJoin('menuitemratings as r', 'm.id', 'r.menuitemid')
+    .leftJoin('menuitemphotos as p', 'm.id', 'p.menuitemid')
+    .select(['m.*', db.raw('group_concat(r.rating) as menuItemRatingsArray'), db.raw('group_concat(p.photoURL) as menuItemPhotosArray')])
+    .where({ 'm.truckid': id })
+    .groupBy('m.truckid');
 }
 
 function findTruckRatings(id) {
     return db('truckratings')
-        .where({ truckid: id });
+        .where({ 'truckid': id });
 }
 
 function findTruckRatingsArray(id) {
     return db('truckratings')
         .select([db.raw('group_concat(rating) as ratings')])
-        .where({ truckid: id });
+        .where({ 'truckid': id });
 }
 
 function add(truckData) {
@@ -48,6 +58,7 @@ function removeTruckRating(id) {
 module.exports = {
     find,
     findById,
+    findTruckMenuItems,
     findTruckRatings,
     findTruckRatingsArray,
     add,
