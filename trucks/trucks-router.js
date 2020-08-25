@@ -33,18 +33,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.get('/:id/menuitems', (req, res) => {
-  const { id } = req.params;
-  
-  trucks.findTruckMenuItems(id)
-    .then(menuItems => {
-      res.json(menuItems);
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'problem with the db', error: err });
-    });
-});
-
 router.get('/:id/ratings', (req, res) => {
     const { id } = req.params;
     
@@ -81,6 +69,7 @@ router.post('/:id/ratings', (req, res) => {
             let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
             let ratingAvg = Math.round(ratingSum/ratingsArray.length);
             const changes = {"customerRatingAvg": ratingAvg};
+            console.log("update obj: ", changes);
             trucks.update(changes, id)
             .then(count => {
                 if (count) {
@@ -131,40 +120,19 @@ router.delete('/:id', (req, res) => {
 
 router.delete('/ratings/:id', (req, res) => {
     const { id } = req.params;
-    trucks.removeTruckRating(id)
-    .then(count => {
-      if (count) {
-        res.json({ removed: count });
-      } else {
-        res.status(404).json({ message: 'Could not find rating with given id' });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Failed to delete rating' });
-    });
   
-    // trucks.removeTruckRating(id)
-    // .then(ids => {
-    //     trucks.findTruckRatingsArray(id)
-    //     .then(ratings => {
-    //         let ratingsArray = ratings[0].ratings.split(",");
-    //         let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
-    //         let ratingAvg = Math.round(ratingSum/ratingsArray.length);
-    //         const changes = {"customerRatingAvg": ratingAvg};
-    //         trucks.update(changes, id)
-    //         .then(count => {
-    //             if (count) {
-    //                 res.status(201).json({ created: ids[0] });
-    //             } else {
-    //               res.status(404).json({ message: 'problem with the db', error: err });
-    //             }
-    //           })
-    //       })
-    //   })
-    //   .catch(err => {
-    //     res.status(500).json({ message: 'problem with the db', error: err });
-    //   });
-});
+    trucks.removeTruckRating(id)
+      .then(count => {
+        if (count) {
+          res.json({ removed: count });
+        } else {
+          res.status(404).json({ message: 'Could not find rating with given id' });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Failed to delete rating' });
+      });
+  });
 
 
 
