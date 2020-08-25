@@ -21,7 +21,6 @@ router.get('/:id', (req, res) => {
 
   menuItems.findById(id)
     .then(menuitems => {
-        console.log("menuitems :", menuitems);
       const menuitem = menuitems[0];
       if (menuitem) {
         res.json(menuitem);
