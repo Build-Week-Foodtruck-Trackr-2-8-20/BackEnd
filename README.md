@@ -22,8 +22,8 @@
 | id                  | integer | _primary key_ and _auto increments_ |
 | imageURL            | string  | _required_ and _unique_             |
 | cuisineType         | string  | _required_                          |
-| location            | string  | _not required_                          |
-| locationGPS         | integer | _not required_                          |
+| location            | string  | _not required_                      |
+| locationGPS         | integer | _not required_                      |
 | departureTime       | datetime| _not required_                      |
 | customerRatingAvg   | integer | _not required_                      |
 | username            | string  | _required_ and _foreign-key_        |
@@ -36,6 +36,42 @@
 | rating              | integer | _not required_                      |
 | username            | string  | _required_ and _foreign-key_        |
 | truckid             | integer | _required_ and _foreign-key_        |
+
+#### menuitems
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| id                  | integer | _primary key_ and _auto increments_ |
+| itemName            | string  | _required                           |
+| itemDescription     | string  | _not required_                      |
+| itemPrice           | integer | _required_                          |
+| customerRatingAvg   | integer | _not required_                      |
+| truckid             | integer | _required_ and _foreign-key_        |
+
+#### menuitemratings
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| id                  | integer | _primary key_ and _auto increments_ |
+| rating              | integer | _not required_                      |
+| username            | string  | _required_ and _foreign-key_        |
+| menuitemid          | integer | _required_ and _foreign-key_        |
+
+#### menuitemphotos
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| id                  | integer | _primary key_ and _auto increments_ |
+| photoURL            | string  | _required_ and _unique_             |
+| menuitemid          | integer | _required_ and _foreign-key_        |
+
+#### dinerfavouritetrucks
+
+| Field               | Type    | Notes                               |
+| --------            | ------- | ----------------------------------- |
+| userid              | integer | _required_ and _foreign-key_        |
+| truckid             | integer | _required_ and _foreign-key_        |
+
 
 ## API
 
@@ -50,12 +86,29 @@ BASE URL: https://food-truck-lambda.herokuapp.com/
 | [POST](#post-apiauthlogin)             | /api/auth/login               | lets user log in                                                |
 | [GET]                                  | /api/trucks/                  | get the list of all the trucks with ratings (in an array)       |
 | [GET]                                  | /api/trucks/:id               | get the details of a specific truck with ratings (in an array)  |
+| [GET]                                  | /api/trucks/:id/menuitems     | get the menu items for a truck                                  |
 | [GET]                                  | /api/trucks/:id/ratings       | get the ratings for a truck                                     |
 | [POST](#post-apitrucks)                | /api/trucks                   | create a new truck                                              |
 | [POST](#post-apitruckratig)            | /api/trucks/:id/ratings       | adds a new rating for truck (also updates the average rating).  |
 | [PUT](#put-apitrucks)                  | /api/trucks/:id               | update a truck                                                  |
 | [DELETE](#delete-apitrucks)            | /api/trucks/:id               | delete a truck                                                  |
-| [DELETE](#delete-apitruckrating)       | /api/trucks/:id               | delete a truck rating                                           |
+| [DELETE](#delete-apitruckrating)       | /api/trucks/ratings/:id       | delete a truck rating                                           |
+| [GET]                                  | /api/menuitems/               | get the list of all the menu items with ratings and photo URLs (in an array)       |
+| [GET]                                  | /api/menuitmes/:id            | get the details of a specific menu item with ratings and photos URLs (in an array)  |
+| [GET]                                  | /api/menuitmes/:id/ratings    | get the ratings for a truck                                     |
+| [GET]                                  | /api/menuitmes/:id/photos     | get the photos for a truck                                     |
+| [POST](#post-apimenuitems)             | /api/menuitems                | create a new menu item                                              |
+| [POST](#post-apimenurating)            | /api/menuitems/:id/ratings    | adds a new rating for a menuitem (also updates the average rating).  |
+| [POST](#put-apimenuphotos)             | /api/menuitems/:id/photos     | adds a new photo for a menuitem                                                   |
+| [PUT](#put-apimenuitmes)               | /api/menuitems/:id            | update a menu item                                                  |
+| [DELETE](#delete-apimenuitems)         | /api/menuitems/:id            | delete a menu item                                                  |
+| [DELETE](#delete-apimenurating)        | /api/menuitems/ratings/:id    | delete a menu item rating                                           |
+| [DELETE](#delete-apimenuphoto)         | /api/menuitems/photos/:id     | delete a menu item photo                                           |
+
+
+
+
+
 
 ## Examples
 
