@@ -173,23 +173,29 @@ response data:
 #### GET /api/users
 
 response data:
+
+```
 [
     {
         "id": 1,
         "username": "mj",
         "email": "mukeshj@gmail.com",
-        "role": 1
+        "role": 1 //operator
     },
     {
-        "id": 2,
-        "username": "operator1",
-        "email": "operator1@gmail.com",
-        "role": 1
+        "id": 3,
+        "username": "diner1",
+        "email": "diner1@gmail.com",
+        "role": 2 //diner
     }
 ]
-
+```
 
 #### GET /api/diners
+
+response data:
+
+```
 [
     {
         "id": 3,
@@ -199,11 +205,76 @@ response data:
         "location": "location",
         "locationGPS": "location GPS",
         "role": 2,
-        "favoritetrucks": "1,2"
+        "favoritetrucks": "1,2"  //an array of fav trucks
     }
 ]
+```
+
+#### POST /api/diners/addfavtruck 
+
+request data:
+
+```
+{
+  "userid": 3,
+  "truckid": 2
+}
+````
+response data:
+```
+{
+    "created": 2
+}
+```
+
+#### POST /api/diners/removefavtruck 
+
+request data:
+
+```
+{
+  "userid": 3,
+  "truckid": 2
+}
+````
+response data:
+```
+{
+    "removed": 1
+}
+```
+
+#### GET /api/operators
+
+response data:
+
+```
+[
+    {
+        "id": 1,
+        "username": "mj",
+        "email": "mukeshj@gmail.com",
+        "password": "$2a$08$9GbHbNbUII8afjCjSo9W8OZX8qwLKwRuF/U0qnqyZk3hQxEvoYsfu",
+        "location": null,
+        "locationGPS": null,
+        "role": 1,
+        "trucksowned": "1,2"
+    },
+    {
+        "id": 2,
+        "username": "operator1",
+        "email": "operator1@gmail.com",
+        "password": "$2a$08$9yeM9RuSDtqCSaOhRvJHP.4RCaUfuDWbc6N6AcSrcr0f/LZPWJira",
+        "location": "location",
+        "locationGPS": "location GPS",
+        "role": 1,
+        "trucksowned": null
+    }
+]
+```
 
 #### GET /api/trucks
+
 response data:
 
 ```
