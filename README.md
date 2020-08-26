@@ -332,10 +332,10 @@ response data:
         "itemName": "burrito",
         "itemDescription": "the best burrito every created",
         "itemPrice": 9.99,
-        "customerRatingAvg": 3,
+        "customerRatingAvg": 5,
         "truckid": 1,
-        "menuItemRatingsArray": null,
-        "menuItemPhotosArray": "photo URL"
+        "menuItemRatingsArray": "5,5",
+        "menuItemPhotosArray": "photo URL,www.photo.com"
     }
 ]
 ```
