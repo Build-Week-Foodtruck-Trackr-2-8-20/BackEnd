@@ -170,6 +170,39 @@ response data:
 }
 ```
 
+#### GET /api/users
+
+response data:
+[
+    {
+        "id": 1,
+        "username": "mj",
+        "email": "mukeshj@gmail.com",
+        "role": 1
+    },
+    {
+        "id": 2,
+        "username": "operator1",
+        "email": "operator1@gmail.com",
+        "role": 1
+    }
+]
+
+
+#### GET /api/diners
+[
+    {
+        "id": 3,
+        "username": "diner1",
+        "email": "diner1@gmail.com",
+        "password": "$2a$08$.E5rRR6w9PlY8iqgVnvXseVqBUf7M0oAcWP0ZEano6pil.Or.3XlK",
+        "location": "location",
+        "locationGPS": "location GPS",
+        "role": 2,
+        "favoritetrucks": "1,2"
+    }
+]
+
 #### GET /api/trucks
 response data:
 
