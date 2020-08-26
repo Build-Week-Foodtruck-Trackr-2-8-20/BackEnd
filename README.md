@@ -84,6 +84,13 @@ BASE URL: https://food-truck-lambda.herokuapp.com/
 | -------------------------------------- | ----------------------------- | --------------------------------------------------------------- |
 | [POST](#post-apiauthregister)          | /api/auth/register            | registers a new user                                            |
 | [POST](#post-apiauthlogin)             | /api/auth/login               | lets user log in                                                |
+| [GET]                                  | /api/users                    | get the list of all the users (id, username, email, role)       |
+| [GET]                                  | /api/diners                   | get the list of all the diners (user info above + location and favorite trucks)       |
+| [GET]                                  | /api/diners/:id               | get the details of a diner (user info above + location and favorite trucks)       |
+| [POST]                                 | /api/diners/addfavtruck       | add a favorite truck for a diner
+| [DELETE]                               | /api/diners/removefavtruck    | remove a favorite truck for a diner
+| [GET]                                  | /api/operators                | get the list of all the operators (user info above + trucks owned)       |
+| [GET]                                  | /api/operators/:id            | get the details of a operator (user info above + trucks owned)       |
 | [GET]                                  | /api/trucks/                  | get the list of all the trucks with ratings (in an array)       |
 | [GET]                                  | /api/trucks/:id               | get the details of a specific truck with ratings (in an array)  |
 | [GET]                                  | /api/trucks/:id/menuitems     | get the menu items for a truck                                  |
