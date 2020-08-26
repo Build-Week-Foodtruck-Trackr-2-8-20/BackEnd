@@ -56,7 +56,7 @@ function findDinersById(id) {
 function findOperators() {
   return db('users as u')
   .leftJoin('trucks as t', 'u.username', 't.username')
-  .select(['u.*', db.raw('group_concat(t.id) as trucksowned')])
+  .select(['u.*', db.raw('group_concat(t.id) as trucksoperated')])
   .where({ 'u.role': OPERATOR })
   .groupBy('u.id');
 }
@@ -64,7 +64,7 @@ function findOperators() {
 function findOperatorsById(id) {
   return db('users as u')
   .leftJoin('trucks as t', 'u.username', 't.username')
-  .select(['u.*', db.raw('group_concat(t.truckid) as trucksoperated')])
+  .select(['u.*', db.raw('group_concat(t.id) as trucksoperated')])
   .where({ 'u.id': id })
   .groupBy('u.id');
 }
