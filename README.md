@@ -323,6 +323,24 @@ response data:
 ]
 ```
 
+#### GET /api/trucks/1/menuitems
+response data:
+```
+[
+    {
+        "id": 2,
+        "itemName": "burrito",
+        "itemDescription": "the best burrito every created",
+        "itemPrice": 9.99,
+        "customerRatingAvg": 3,
+        "truckid": 1,
+        "menuItemRatingsArray": null,
+        "menuItemPhotosArray": "photo URL"
+    }
+]
+```
+
+
 #### POST /api/trucks
 
 request data:
@@ -364,5 +382,56 @@ response data:
 ```
 {
     "created": 7
+}
+```
+
+#### POST /api/trucks/menuitems
+
+request data:
+```
+{
+    "itemName": "taco",
+    "itemDescription": "the best taco every created",
+    "itemPrice": 9.99,
+    "customerRatingAvg": 5,
+    "truckid": 1
+}
+```
+
+response data:
+```
+{
+    "created": 3
+}
+```
+
+#### POST /api/menuitems/:id/ratings
+request data:
+```
+{
+    "rating": 5,
+    "menuitemid": 2,
+    "username": "mj"
+}
+```
+response data:
+```
+{
+    "created": 6
+}
+```
+
+#### POST /api/menuitems/:id/photos
+request data:
+```
+{
+    "photoURL": "www.photo.com",
+    "menuitemid": 2
+}
+```
+response data:
+```
+{
+    "created": 3
 }
 ```
