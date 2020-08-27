@@ -10,7 +10,8 @@ exports.up = function (knex) {
         tbl.string("email", 128).notNullable().unique().index();
         tbl.string("password", 256).notNullable();
         tbl.string("location", 128);
-        tbl.string("locationGPS", 128);
+        tbl.decimal("locationLang",9,6);
+        tbl.decimal("locationLat",9,6);
         tbl
           .integer("role")
           .notNullable()
@@ -24,7 +25,8 @@ exports.up = function (knex) {
         tbl.string("imageURL", 128).notNullable().unique();
         tbl.string("cuisineType", 128).notNullable();
         tbl.string("location", 128);
-        tbl.string("locationGPS", 128);
+        tbl.decimal("locationLang",9,6);
+        tbl.decimal("locationLat",9,6);
         tbl.datetime("departureTime");
         tbl.integer("customerRatingAvg").unsigned();
         tbl
