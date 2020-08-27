@@ -12,7 +12,8 @@
 | password    | string  | _required_                          |
 | role        | integer | _required_ (1-Operator & 2-Diner)   |
 | location    | string  | _not required_                      |
-| locationGPS | string  | _not required_                      |
+| locationLang | decimal  | _not required_                      |
+| locationLat | decimal  | _not required_                      |
 
 
 #### trucks
@@ -23,7 +24,8 @@
 | imageURL            | string  | _required_ and _unique_             |
 | cuisineType         | string  | _required_                          |
 | location            | string  | _not required_                      |
-| locationGPS         | integer | _not required_                      |
+| locationLang        | decimal  | _not required_                      |
+| locationLat         | decimal  | _not required_                      |
 | departureTime       | datetime| _not required_                      |
 | customerRatingAvg   | integer | _not required_                      |
 | username            | string  | _required_ and _foreign-key_        |
@@ -128,9 +130,7 @@ request data:
   "username": "operator1",
   "email": "operator1@gmail.com",
   "password": "pass",
-  "role": 1,
-  "location": "location",
-  "locationGPS": "location GPS"
+  "role": 1
 }
 ```
 
@@ -202,8 +202,9 @@ response data:
         "username": "diner1",
         "email": "diner1@gmail.com",
         "password": "$2a$08$.E5rRR6w9PlY8iqgVnvXseVqBUf7M0oAcWP0ZEano6pil.Or.3XlK",
-        "location": "location",
-        "locationGPS": "location GPS",
+        "location": null,
+        "locationLat": null,
+        "locationLang": null,
         "role": 2,
         "favoritetrucks": "1,2"  //an array of fav trucks
     }
@@ -256,7 +257,8 @@ response data:
         "email": "mukeshj@gmail.com",
         "password": "$2a$08$9GbHbNbUII8afjCjSo9W8OZX8qwLKwRuF/U0qnqyZk3hQxEvoYsfu",
         "location": null,
-        "locationGPS": null,
+        "locationLang": null,
+        "locationLat": null,
         "role": 1,
         "trucksowned": "1,2"
     },
@@ -266,7 +268,8 @@ response data:
         "email": "operator1@gmail.com",
         "password": "$2a$08$9yeM9RuSDtqCSaOhRvJHP.4RCaUfuDWbc6N6AcSrcr0f/LZPWJira",
         "location": "location",
-        "locationGPS": "location GPS",
+        "locationLang": null,
+        "locationLat": null,
         "role": 1,
         "trucksowned": null
     }
@@ -284,7 +287,8 @@ response data:
         "imageURL": "www.amazon.com",
         "cuisineType": "Indian",
         "location": "San Francisco",
-        "locationGPS": "San Francisco",
+        "locationLang": null,
+        "locationLat": null,
         "departureTime": "2017-01-30 16:49:19",
         "customerRatingAvg": 4,
         "username": "mj",
@@ -295,7 +299,8 @@ response data:
         "imageURL": "www.gogole.com",
         "cuisineType": "Italian",
         "location": "San Francisco",
-        "locationGPS": "San Francisco",
+        "locationLang": null,
+        "locationLat": null,
         "departureTime": "2017-01-30 16:49:19",
         "customerRatingAvg": 5,
         "username": "mj",
@@ -350,7 +355,8 @@ request data:
 "imageURL": "www.apple.com",
 "cuisineType": "Mexican",
 "location": "San Francisco",
-"locationGPS": "San Francisco",
+"locationLang": 37.7749,
+"locationLat": 122.4194,
 "departureTime": "2017-01-30 16:49:19",
 "customerRatingAvg": 5,
 "username": "mj"
