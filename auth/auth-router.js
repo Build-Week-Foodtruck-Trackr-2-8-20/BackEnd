@@ -40,7 +40,13 @@ router.post("/login", (req, res) => {
           const token = genToken(user);
           res.status(200).json({
             message: "Welcome to our API",
+            id: user.id,
+            username: user.username,
+            email: user.email,
             role: user.role,
+            location: user.location,
+            locationLang: user.locationLang,
+            locationLat: user.locationLat,
             token
           });
         } else {
