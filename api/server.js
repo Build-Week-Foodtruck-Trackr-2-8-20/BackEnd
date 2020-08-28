@@ -16,11 +16,11 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-server.use('/api/users', userRouter);
-server.use('/api/diners', dinerRouter);
-server.use('/api/operators', operatorRouter);
-server.use('/api/trucks', truckRouter);
-server.use('/api/menuitems', menuItemRouter);
+server.use('/api/users', authenticate, userRouter);
+server.use('/api/diners',authenticate, dinerRouter);
+server.use('/api/operators',authenticate, operatorRouter);
+server.use('/api/trucks',authenticate, truckRouter);
+server.use('/api/menuitems',authenticate, menuItemRouter);
 
 
 server.get("/", (req, res) => {
