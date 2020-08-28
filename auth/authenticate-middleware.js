@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
           res.status(401).json({ you: "you are not authorized!" });
         } else {
           req.decodedJwt = decodedToken;
-          console.log(req.decodedJwt);
           next();
         }
       })

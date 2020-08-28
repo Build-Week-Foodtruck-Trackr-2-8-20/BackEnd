@@ -143,43 +143,45 @@ router.delete('/:id', (req, res) => {
 router.delete('/ratings/:id', (req, res) => {
     const { id } = req.params;
     
-    menuItems.removeMenuItemRating(id)
-    .then(count => {
-      if (count) {
-        res.json({ removed: count });
-      } else {
-        res.status(404).json({ message: 'Could not find rating with given id' });
-      }
-    })
+    menuItems.findMenuItemID(id)
+    .then(menuitemid => {
+      console.log("menuitemid[0]: ", menuitemid[0].menuitemid);
+      menuItems.removeMenuItemRating(id)
+        .then(count1 => {
+          menuItems.findMenuItemRatingsArray(menuitemid[0].menuitemid)
+          .then(ratings => {
+              console.log("ratings[0].ratings: ", ratings[0].ratings);
+              if (ratings[0].ratings) {
+                let ratingsArray = ratings[0].ratings.split(",");
+                let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
+                let ratingAvg = Math.round(ratingSum/ratingsArray.length);
+                const changes = {"customerRatingAvg": ratingAvg};
+                menuItems.update(changes, menuitemid[0].menuitemid)
+                .then(count2 => {
+                    if (count1) {
+                        res.status(201).json({ deleted: count1 });
+                    } else {
+                      res.status(404).json({ message: 'problem with the db', error: err });
+                    }
+                })
+              } else {
+                let ratingAvg = 0;
+                const changes = {"customerRatingAvg": ratingAvg};
+                menuItems.update(changes, menuitemid[0].menuitemid)
+                .then(count2 => {
+                    if (count1) {
+                        res.status(201).json({ deleted: count1 });
+                    } else {
+                      res.status(404).json({ message: 'problem with the db', error: err });
+                    }
+                })
+              }
+          })
+        })
+      })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to delete rating' });
+      res.status(500).json({ message: 'problem with the db', error: err });
     });
-
-    // menuItems.findMenuItemID(id)
-    // .then(menuItemID => {
-    //     menuItems.removeMenuItemRating(id)
-    //     .then(ids => {
-    //         menuItems.findMenuItemRatingsArray(menuItemID.menuitemid)
-    //         .then(ratings => {
-    //             let ratingsArray = ratings[0].ratings.split(",");
-    //             let ratingSum = ratingsArray.reduce((a,b)=>{return a + parseInt(b)},0);
-    //             let ratingAvg = Math.round(ratingSum/ratingsArray.length);
-    //             const changes = {"customerRatingAvg": ratingAvg};
-    //             console.log("update obj: ", changes);
-    //             menuItems.update(changes, id)
-    //             .then(count => {
-    //                 if (count) {
-    //                     res.status(201).json({ created: ids[0] });
-    //                 } else {
-    //                 res.status(404).json({ message: 'problem with the db', error: err });
-    //                 }
-    //             })
-    //         })
-    //     })
-    // })
-    // .catch(err => {
-    //     res.status(500).json({ message: 'problem with the db', error: err });
-    // });
 
 });
 

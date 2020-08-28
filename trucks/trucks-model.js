@@ -36,6 +36,13 @@ function findTruckRatingsArray(id) {
         .where({ 'truckid': id });
 }
 
+function findTruckIdByRatingId(id) {
+    return db('truckratings as r')
+    .leftJoin('trucks as t', 't.id', 'r.truckid')
+    .select('t.id')
+    .where({ 'r.id': id });
+}
+
 function add(truckData) {
     return db('trucks').insert(truckData);
 }
@@ -65,5 +72,6 @@ module.exports = {
     addTruckRating,
     update,
     remove,
-    removeTruckRating
+    removeTruckRating,
+    findTruckIdByRatingId
 };
